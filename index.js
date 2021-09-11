@@ -1,21 +1,25 @@
-// Add to the prototype of all functions the method defer(ms), that returns a wrapper, delaying the call by ms milliseconds.
-// Here’s an example of how it should work:
-// Function.prototype.defer = function (ms) {
-// 	const start = Date.now();
-// 	while (Date.now() - start < ms) {}
-// 	return this;
-// };
+// The difference between calls
+// importance: 5
+// Let’s create a new rabbit object:
 
-Function.prototype.defer = function (ms) {
-	let f = this;
-	return function (...args) {
-		setTimeout(() => f.apply(this, args), ms);
-	};
-};
-
-function f(a, b) {
-	console.log(a + b);
+function Rabbit(name) {
+	this.name = name;
 }
+// This declare Function.prototype sayHi method
+console.log('Rabbit.prototype before ', Rabbit.prototype);
+Rabbit.prototype.sayHi = function () {
+	console.log(this.name);
+};
+console.log('Rabbit.prototype ', Rabbit.prototype);
+let rabbit = new Rabbit('Rabbit');
 
-f.defer(1000)(1, 2); // shows 3 after 1 second
-// Please note that the arguments should be passed to the original function.
+// These calls do the same thing or not?
+// no, because
+
+//The first call has this == rabbit, the other ones have this equal to Rabbit.prototype, because it’s actually the object before the dot.
+// So only the first call shows Rabbit, other ones show undefined:
+
+rabbit.sayHi();
+Rabbit.prototype.sayHi();
+Object.getPrototypeOf(rabbit).sayHi();
+rabbit.__proto__.sayHi();

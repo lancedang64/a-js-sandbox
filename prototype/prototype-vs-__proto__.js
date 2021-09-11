@@ -15,7 +15,7 @@ function defer(ms) {
 const deferProto = {
 	defer,
 };
-// won't work because these does not exist! (only exit as Object.prototype and so on...)
+// won't work because these does not exist! (only exist as Object.prototype and so on...)
 // f.prototype.defer = defer;
 // f.prototype = defer;
 //----------------------------------------
