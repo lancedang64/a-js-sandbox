@@ -1,5 +1,6 @@
 // Add to the prototype of all functions the method defer(ms), that returns a wrapper, delaying the call by ms milliseconds.
 // Here’s an example of how it should work:
+
 // Function.prototype.defer = function (ms) {
 // 	const start = Date.now();
 // 	while (Date.now() - start < ms) {}
